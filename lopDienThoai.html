@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class Mobile {
+    constructor(name){
+      this.name = name;
+      this.baterry=100;
+      this.isOn=false;
+      this.draftMessage="";
+      this.inbox=[];
+      this.sentMessage=[];
+    }
+    checkStatus(){
+      return this.isOn? "Điện thoại đang bật!":"Điện thoại đang tắt!";
+    }
+    powerOn(){
+      this.isOn=true;
+      console.log(`${this.name} đã bật`);
+    }
+    powerOff(){
+      this.isOn=false;
+      console.log(`${this.name} đã tắt`);
+    }
+    chargeBattery(){
+      this.battery=100;
+      console.log(`${this.name} đã được sạc đầy pin`);
+    }
+    writeMessage(message){
+      if(!this.isOn||this.baterry<=0){
+        console.log("không thể thực hiện thao tá. Điện thoại đang tắt hoặc hết pin!");
+        return;
+      }
+      this.draftMessage=message;
+      this.battery--;
+      console.log(`${this.name} da soan tin nhan ${message}`);
+    }
+    sendMessage(receiver){
+      if(this.draftMessage===""){
+        console.log("Không có tin nhắn để gửi");
+        return;
+      }
+      if(!this.isOn||this.baterry<=0){
+        console.log("không thể thực hiện thao tá. Điện thoại đang tắt hoặc hết pin!");
+        return;
+      }
+      receiver.receiveMessage(this.draftMessage,this.name);
+      this.sentMessage.push(this.draftMessage);
+      console.log(`${this.name} đã gửi tin nhắn ${this.draftMessage} đến ${receiver.name}`);
+      this.draftMessage="";
+      this.battery--;
+    }
+    receiveMessage(message,sender){
+      if(!this.isOn||this.baterry<=0){
+        console.log("không thể thực hiện thao tá. Điện thoại đang tắt hoặc hết pin!");
+        return;
+      }
+      this.inbox.push({sender,message});
+      console.log(`${this.name} đã nhận được tin nhắn từ ${sender}: "${message}"`);
+      this.battery--;
+    }
+    viewInbox(){
+      if(!this.isOn||this.baterry<=0){
+        console.log("không thể thực hiện thao tá. Điện thoại đang tắt hoặc hết pin!");
+        return;
+      }
+      console.log(`${this.name} - Hộp thư đến`);
+      this.inbox.forEach((msg,index)=>{
+        console.log(`${index + 1}. Từ ${msg.sender}: "${msg.message}"`);
+      });
+      this.battery--
+    }
+    viewSentMessage(){
+      if(!this.isOn||this.baterry<=0){
+        console.log("không thể thực hiện thao tá. Điện thoại đang tắt hoặc hết pin!");
+        return;
+      }
+      console.log(`${this.name} - tin nhắn đã gửi`);
+      this.sentMessage.forEach((msg,index)=>{
+        console.log(`${index+1} - ${msg}`);
+      });
+      this.battery--
+    }
+  }
+  // Tạo hai đối tượng Nokia và iPhone
+  let nokia = new Mobile("Nokia");
+  let iphone = new Mobile("iPhone");
+
+  // Bật điện thoại
+  nokia.powerOn();
+  iphone.powerOn();
+
+  // Nokia soạn tin nhắn và gửi cho iPhone
+  nokia.writeMessage("Xin chào, iPhone!");
+  nokia.sendMessage(iphone);
+
+  // iPhone kiểm tra hộp thư đến
+  iphone.viewInbox();
+
+</script>
+</body>
+</html>
