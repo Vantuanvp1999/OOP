@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Mouse {
+        status;
+        sound_mouse;
+        constructor(name,weight,speed) {
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+
+        }
+        getStatus(){
+            if(status){
+                alert('chuot con sống');
+
+            }else {
+                alert('chuot da chet');
+            }
+
+        }
+        die(){
+            this.status = false;
+        }
+        live(){
+            this.status = true;
+        }
+        getSound(sound){
+            return this.sound_mouse=sound;
+            alert(this.sound_mouse);
+        }
+
+    }
+    class Cat{
+        sound_cat;
+        constructor(name,weight,speed,mouse){
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+            this.mouse = mouse;
+
+        }
+        setSoundCat(sound){
+            this.sound_cat = sound;
+        }
+        getSoundCat(){
+            return this.sound_cat;
+            alert(this.sound_cat);
+        }
+        getWeightCat(){
+            return this.weight;
+        }
+        catchTHeMouse(){
+            if(this.speed>this.mouse.speed){
+                alert("Mèo đã bắt được chuột!");
+            }else{
+                alert("mèo không bắt được chuột")
+            }
+        }
+        eatTheMouse(){
+            if(this.mouse.status===true){
+                this.weight = this.weight + this.mouse.weight;
+                this.mouse.status = false;
+                alert("chuột đã bị mèo ăn");
+            }
+        }
+    }
+    let rat = new Mouse("Jerry",12,10);
+    let pussyCat = new Cat("Tom",34,20,rat);
+    rat.live();
+    pussyCat.catchTHeMouse();
+    pussyCat.eatTheMouse();
+</script>
+</body>
+</html>
