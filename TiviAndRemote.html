@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class remote {
+        constructor(id,tv) {
+            this.id = id;
+            this.tv = tv;
+        }
+        setChannel (channel) {
+            this.tv.channel = channel;
+        }
+        setVolume (volume) {
+            this.tv.volume = volume;
+        }
+    }
+    class Tivi{
+        status;
+        constructor(channel, volume) {
+            this.channel = channel;
+            this.volume = volume;
+        }
+        getStatus(){
+            if(status){
+                alert("Tivi đang bật");
+            }else{
+                alert("Tivi đang tắt");
+            }
+        }
+        turnOn(){
+            this.status = true;
+        }
+        turnOff(){
+            this.status = false;
+        }
+        getVolume(){
+            return this.volume;
+        }
+        getChannel(){
+            return this.channel;
+        }
+        setNewVolume(volume1){
+            this.volume = volume1;
+        }
+        setNewChannel(channel1){
+            this.channel = channel1;
+        }
+    }
+let tivi1 = new Tivi(1,12);
+    let remote1 = new remote(12,tivi1)
+    tivi1.getStatus();
+    remote1.setVolume(22);
+    alert(tivi1.getVolume());
+</script>
+</body>
+</html>
