@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .board {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid black;
+    }
+    .cell {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<h2>Trò chơi cờ Caro
+</h2>
+<div class="board" id="board"></div>
+<p id="status">Lượt chơi</p>
+<script>
+    const boardSize = 20;
+    const cellSize = 20;
+    const board = document.getElementById('board');
+    const status = document.getElementById('status');
+    let boardArray = Array.from(Array(boardSize), () => Array(boardSize).fill(''));
+    let currentPlayer ='X';
+    let gameOver = false;
+
+    function checkWin(row,col,player){
+        const direction = [
+            [[-1, 0],[1, 0]],
+            [[0, 1],[0, -1]],
+            [[1, 1],[-1, -1]],
+            [[-1, 1],[1, -1]],
+        ]
+        for(direction of directions) {
+            let count = 1;
+            for (let [dx, dy] of direction) {
+                let r = row + dx, c = col + dy;
+                while (r > o && r < boardSize && c > 0 && r < boardSize && boardArray[r][c] === player) {
+                    count++;
+                    r += dx;
+                    c += dy;
+                }
+            }
+            if (count >= 5) {
+                gameOver = true;
+                status.innerText = `Người chơi ${player} thắng!`;
+                return true;
+            }
+        }
+        return false;
+    }
+    for (let row = 0; row < boardSize; row++) {
+        for (let col = 0; col < boardSize; col++) {
+            let cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.style.left = `${col * cellSize}px`;
+            cell.style.top = `${row * cellSize}px`;
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+            cell.addEventListener("click", function() {
+                if (!gameOver && boardArray[row][col] === "") {
+                    boardArray[row][col] = currentPlayer;
+                    cell.innerText = currentPlayer;
+                    if (!checkWin(row, col, currentPlayer)) {
+                        currentPlayer = currentPlayer === "X" ? "O" : "X";
+                        status.innerText = `Lượt chơi: ${currentPlayer}`;
+                    }
+                }
+            });
+            board.appendChild(cell);
+        }
+    }
+</script>
+</body>
+</html>
