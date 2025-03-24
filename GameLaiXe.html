@@ -60,8 +60,8 @@ function carMove(){
 
     if(car.x<0) car.x=0;
     if(car.y<0) car.y=0;
-    if(car.x>canvas.width) car.x=canvas.width;
-    if(car.y>canvas.height) car.y=canvas.height;
+    if(car.x+20>canvas.width)car.x=canvas.width-20;
+    if(car.y+20>canvas.height) car.y=canvas.height-20;
 
 }
 function checkCollision(){
@@ -91,7 +91,7 @@ function drawGame(){
     rewards.forEach(reward => ctx.fillRect(reward.x,reward.y, reward.size, reward.size));
 
     ctx.fillStyle = "#000000";
-    ctx.fillText(score,10,20);
+    ctx.fillText(score,20,40);
 
 }
 function gameRun(){
