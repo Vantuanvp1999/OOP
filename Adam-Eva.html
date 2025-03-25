@@ -23,11 +23,11 @@
             return this.weight;
         }
     };
-    let human = function(name,gender,weight){
+    let human = function(name,gender,weight,apple){
         this.name = name;
         this.gender = gender;
         this.weight = weight;
-
+        this.apple = apple;
         this.Human = function(){
             return "Người này tên là " + name + " giới tính " + gender+ " nặng "+weight+" kg."
         }
@@ -37,11 +37,11 @@
         this.setGender = function(gender){
             this.gender = gender;
         }
-        this.checkApple = function(apple1){
-            return this.apple1.getWeight();
+        this.checkApple = function(){
+            return this.apple.getWeight();
         }
         this.eat = function(){
-            return this.apple1.decrease();
+            return this.apple.decrease();
             this.weight++;
         }
         this.say = function(){
@@ -60,12 +60,11 @@
             this.weight = weight;
         }
     }
-    debugger
-    let adam = new human("Adam","Male",102);
     let apple12 = new Apple();
-
+    let adam = new human("Adam","Male",102,apple12);
     document.write(adam.Human() + "<br/>");
     document.write(adam.getName() + "<br/>");
+    document.write(adam.checkApple(apple12));
 </script>
 </body>
 </html>
