@@ -18,7 +18,7 @@ let car = {
     speed : 3,
     direction : "right"
 }
-let obtacles = generateObtacles(5);
+let obtacles = generateObtacles(10);
 let rewards= generateRewards(5);
 let score =0 ;
 let gameRunning = true;
@@ -76,6 +76,8 @@ function checkCollision(){
         if(car.x<reward.x+reward.size && car.x + 20>reward.x
         && car.y<reward.y+reward.size && car.y + 20>reward.y){
          score++;
+            reward.x= Math.random() * canvas.width;
+            reward.y= Math.random() * canvas.height
         }
     }
 }
