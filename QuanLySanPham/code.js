@@ -38,16 +38,18 @@ products.splice(id, 1);
 showAllProducts();
 }
 function editByIndex(id) {
-    `<fieldset>
+  text =  `<fieldset>
      <legend>Sửa thông tin</legend>
-     Mã <input value=${products[id].id} id ="id1"><br><br>
-     Tên sản phẩm<input value=${products[id].name} id ="name1"><br><br>
-     Giá <input value=${products[id].price} id ="price1"><br><br>
-     Số lượng <input value=${products[id].amount} id ="amount1"><br><br>
-     Tổng tiền <input value=${products[id].totalAmount()} id ="totalAmount"><br><br>
-     <button onclick="ok()">OK</button>
-     <button type="reset">Hủy</button>
+     Mã <input value='${products[id].id}' id ="id1"><br><br>
+     Tên sản phẩm<input value='${products[id].name}' id ="name1"><br><br>
+     Giá <input value='${products[id].price}' id ="price1"><br><br>
+     Số lượng <input value='${products[id].amount}' id ="amount1"><br><br>
+     Tổng tiền <input value='${products[id].totalAmount()}' id ="totalAmount"><br><br>
+     <button onclick="ok(${id})">OK</button>
+     <button type="reset" onclick="reset()">Hủy</button>
     </fieldset>`
+    document.getElementById("tbody1").innerHTML = text;
+
 }
 function addNewProduct() {
     let id =document.getElementById('id').value;
@@ -59,12 +61,18 @@ function addNewProduct() {
     showAllProducts();
 }
 
-function ok() {
+function ok(index) {
     let id = document.getElementById('id1').value;
     let name = document.getElementById('name1').value;
     let price = document.getElementById('price1').value;
     let amount = document.getElementById('amount1').value;
         let newProduct = new Product(id, name, price, amount);
-        products.push(newProduct);
+        products[index]=newProduct;
         showAllProducts();
+        reset()
+}
+function reset() {
+    document.getElementById('tbody1').innerHTML = '';
+
+
 }
