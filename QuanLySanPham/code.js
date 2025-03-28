@@ -11,9 +11,9 @@ class Product {
     }
 }
    let products = [
-    new Product(1,'Ao phong den',250000,115),
-    new Product(2,'Lac tay',50000,135),
-    new Product(3,'Quan jeans',350000,84),
+    new Product(1,'Áo phông đen',250000,115),
+    new Product(2,'Lắc tay',50000,135),
+    new Product(3,'Quần bò',350000,84),
 ];
 
 function showAllProducts() {
@@ -44,7 +44,7 @@ function editByIndex(id) {
      Tên sản phẩm<input value='${products[id].name}' id ="name1"><br><br>
      Giá <input value='${products[id].price}' id ="price1"><br><br>
      Số lượng <input value='${products[id].amount}' id ="amount1"><br><br>
-     Tổng tiền <input value='${products[id].totalAmount()}' id ="totalAmount"><br><br>
+ 
      <button onclick="ok(${id})">OK</button>
      <button type="reset" onclick="reset()">Hủy</button>
     </fieldset>`
