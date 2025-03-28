@@ -44,7 +44,6 @@ function editByIndex(id) {
      Tên sản phẩm<input value='${products[id].name}' id ="name1"><br><br>
      Giá <input value='${products[id].price}' id ="price1"><br><br>
      Số lượng <input value='${products[id].amount}' id ="amount1"><br><br>
- 
      <button onclick="ok(${id})">OK</button>
      <button type="reset" onclick="reset()">Hủy</button>
     </fieldset>`
